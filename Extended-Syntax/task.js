@@ -1,4 +1,4 @@
-
+"use strict";
 
 function calculateQuadraticEquation(){
     let a = +window.a.value;
@@ -11,13 +11,10 @@ function calculateQuadraticEquation(){
 }
 
 function getResult(a,b,c){
-    // код для задачи №1 писать здесь
-    //return x;
-    "use strict";
-
+       
     let D = Math.pow(b, 2) - 4 * a * c;
     if (D < 0 ) {
-       return "Корней нет"
+       return [];
     } else if (D == 0) {
       let x = -b / 2 * a;
       return x;
@@ -27,7 +24,7 @@ function getResult(a,b,c){
       return [x1, x2];
     }
 }
-getResult();
+getResult(25, 0, -4);
 
 
 /* Подскажите, пожалуйста, как мне сделать 
@@ -41,7 +38,7 @@ getResult();
   case (D < 0):
     alert("Корней нет");
     break;
-  case 0:
+  case D == 0:
     let x = -b / 2 * a;
     alert("x = " + x);
     break;    
@@ -64,10 +61,8 @@ function calculateDrinkTask(){
 }
 
 function askDrink(name,dateOfBirthday){
-    // код для задачи №3 писать здесь
-    //console.log(result)
-    //return result;
-    let year = (new Date).getFullYear();
+   
+    let year = new Date().getFullYear();
     let age = year - dateOfBirthday;
     let result = '';
     if (age <= 18) {
@@ -78,9 +73,8 @@ function askDrink(name,dateOfBirthday){
       return result;
     }
 }
-askDrink(); 
-/* у меня эта функция считает, что люди младше 1970 года 
-рождения не могут пить алкоголь. Где и что я делаю не то???*/
+askDrink(Vasya, 1978); 
+
 
 function calculateAverageRating(){
     let marks = window.marks.value.split("").map(Number).filter((n)=> !isNaN(n) && n > 0);
@@ -88,24 +82,22 @@ function calculateAverageRating(){
     window.averageMark.textContent = averageMark;
 }
 
-function getAverageMark(...marks){
-    // код для задачи №2 писать здесь
-    //return averageMark;
-    
+function getAverageMark(marks){
+       
+      if (marks.length > 5) {
+        console.log("Количество вводимых оценoк больше 5.\nСейчас я дам среднее первых пяти оценок")
+        marks.length = 5;
+      } 
       let total = 0;
       for (let i = 0; i < marks.length; i++) {
         total += marks[i];
       }
-      
-      if (marks.length > 5) {
-        console.log("Количество вводимых оценк болше 5.\nСейчас я дам среднее первых пяти оценок")
-        marks.length = 5;
-      } 
+
         return total / marks.length;
       
       
 }
-getAverageMark();
+getAverageMark([4, 5, 4, 5, 5]);
 
 /* Подскажите, пожалуйста, что я делаю не так?
 когда я сделала у себя вот так (Пример1) у меня в браузере прекрасно
@@ -119,7 +111,7 @@ function count(...args) {
       }
 
       if (args.length > 5) {
-        console.log("Количество вводимых оценк болше 5.\nСейчас я дам среднее первых пяти оценок")
+        console.log("Количество вводимых оценок больше 5.\nСейчас я дам среднее первых пяти оценок")
 
         let array = args.slice(0, 5);
         for (let i = 0; i < array.length; i++) {
@@ -131,9 +123,9 @@ function count(...args) {
   }
     count(5, 4, 3, 10, 2, 18, 7, 4);  
 
-    А когда я сделал вот так, то считало только цифры, количество 
+    А когда я сделала вот так, то считало только цифры, количество 
     которых меньше пяти, и не могло срезать и посчитать 
-    (а может что-то другое делалоили не делало - не знаю)
+    (а может что-то другое делала или не делала - не знаю)
     
     function count(...args) {
       let total = 0;
@@ -143,7 +135,7 @@ function count(...args) {
       }
 
       if (args.length > 5) {
-        console.log("Количество вводимых оценк болше 5.\nСейчас я дам среднее первых пяти оценок")
+        console.log("Количество вводимых оценок больше 5.\nСейчас я дам среднее первых пяти оценок")
         let array = args.slice(0, 5);
         for (let j = 0; j < array.length; j++) {
         sum += array[j];
